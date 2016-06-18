@@ -6,15 +6,22 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>300</height>
+    <width>816</width>
+    <height>520</height>
    </rect>
+  </property>
+  <property name="cursor">
+   <cursorShape>ArrowCursor</cursorShape>
   </property>
   <property name="windowTitle">
    <string>Shadow</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="shadow.qrc">
+    <normaloff>:/new/prefix1/images/icon.png</normaloff>:/new/prefix1/images/icon.png</iconset>
+  </property>
   <widget class="QWidget" name="centralWidget">
-   <layout class="QVBoxLayout" name="verticalLayout_2">
+   <layout class="QHBoxLayout" name="horizontalLayout">
     <item>
      <layout class="QVBoxLayout" name="verticalLayout">
       <item>
@@ -48,7 +55,7 @@
          </widget>
         </item>
         <item>
-         <widget class="QLineEdit" name="inputImg"/>
+         <widget class="QTextEdit" name="inputImg"/>
         </item>
         <item>
          <widget class="QPushButton" name="btnInputImg">
@@ -71,7 +78,7 @@
         <item>
          <widget class="QLabel" name="label_6">
           <property name="text">
-           <string>光源设置（单位：格）：</string>
+           <string>光源设置：</string>
           </property>
          </widget>
         </item>
@@ -87,7 +94,31 @@
          </widget>
         </item>
         <item>
-         <widget class="QLineEdit" name="lightX"/>
+         <widget class="QLineEdit" name="lightX">
+          <property name="text">
+           <string>3</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_15">
+          <property name="text">
+           <string>格</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <spacer name="horizontalSpacer_6">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
         </item>
         <item>
          <widget class="QLabel" name="label_2">
@@ -97,7 +128,18 @@
          </widget>
         </item>
         <item>
-         <widget class="QLineEdit" name="lightY"/>
+         <widget class="QLineEdit" name="lightY">
+          <property name="text">
+           <string>1.5</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_16">
+          <property name="text">
+           <string>格</string>
+          </property>
+         </widget>
         </item>
         <item>
          <spacer name="horizontalSpacer_3">
@@ -152,6 +194,27 @@
          </widget>
         </item>
         <item>
+         <widget class="QLabel" name="label_13">
+          <property name="text">
+           <string>每一格大小：</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLineEdit" name="scrollWidth">
+          <property name="text">
+           <string>24</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_14">
+          <property name="text">
+           <string>px</string>
+          </property>
+         </widget>
+        </item>
+        <item>
          <spacer name="horizontalSpacer_5">
           <property name="orientation">
            <enum>Qt::Horizontal</enum>
@@ -191,6 +254,9 @@
        <layout class="QHBoxLayout" name="horizontalLayout_8">
         <item>
          <widget class="QLabel" name="label">
+          <property name="whatsThis">
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
           <property name="text">
            <string>比例：</string>
           </property>
@@ -230,7 +296,11 @@
          </widget>
         </item>
         <item>
-         <widget class="QLineEdit" name="attenuator"/>
+         <widget class="QLineEdit" name="attenuator">
+          <property name="text">
+           <string>200</string>
+          </property>
+         </widget>
         </item>
         <item>
          <widget class="QLabel" name="label_9">
@@ -254,51 +324,128 @@
         </item>
        </layout>
       </item>
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout_2">
+        <item>
+         <widget class="QLabel" name="label_12">
+          <property name="text">
+           <string>输出文件前缀：</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLineEdit" name="outfilename"/>
+        </item>
+        <item>
+         <spacer name="horizontalSpacer">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item>
+         <widget class="QPushButton" name="btnSubmit">
+          <property name="font">
+           <font>
+            <pointsize>11</pointsize>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true"/>
+          </property>
+          <property name="text">
+           <string>开始处理</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
      </layout>
     </item>
     <item>
-     <layout class="QHBoxLayout" name="horizontalLayout_11">
+     <widget class="Line" name="line_3">
+      <property name="orientation">
+       <enum>Qt::Vertical</enum>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <layout class="QVBoxLayout" name="verticalLayout_2">
       <item>
-       <widget class="QLabel" name="label_12">
+       <widget class="QLabel" name="label_17">
         <property name="text">
-         <string>输出文件前缀名：</string>
+         <string>主程序输出：</string>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QLineEdit" name="outfilename"/>
-      </item>
-     </layout>
-    </item>
-    <item>
-     <layout class="QHBoxLayout" name="horizontalLayout_2">
-      <item>
-       <spacer name="horizontalSpacer">
-        <property name="orientation">
-         <enum>Qt::Horizontal</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>40</width>
-          <height>20</height>
-         </size>
-        </property>
-       </spacer>
-      </item>
-      <item>
-       <widget class="QPushButton" name="btnSubmit">
-        <property name="text">
-         <string>确定</string>
-        </property>
-       </widget>
+       <widget class="QTextEdit" name="coreOutput"/>
       </item>
      </layout>
     </item>
    </layout>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
+  <widget class="QMenuBar" name="menuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>816</width>
+     <height>28</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menu">
+    <property name="title">
+     <string>查看帮助</string>
+    </property>
+    <addaction name="GotoWeb"/>
+    <addaction name="LocalFile"/>
+   </widget>
+   <widget class="QMenu" name="menu_2">
+    <property name="title">
+     <string>关于</string>
+    </property>
+    <addaction name="separator"/>
+    <addaction name="actionAbout"/>
+    <addaction name="actionAuthor_s_Blog"/>
+   </widget>
+   <addaction name="menu"/>
+   <addaction name="menu_2"/>
+  </widget>
+  <action name="actionAbout">
+   <property name="text">
+    <string>About</string>
+   </property>
+  </action>
+  <action name="actionAuthor_s_Blog">
+   <property name="text">
+    <string>View in Github</string>
+   </property>
+   <property name="toolTip">
+    <string>View in Github</string>
+   </property>
+  </action>
+  <action name="GotoWeb">
+   <property name="text">
+    <string>官网介绍</string>
+   </property>
+  </action>
+  <action name="LocalFile">
+   <property name="text">
+    <string>本地文件</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
- <resources/>
+ <resources>
+  <include location="shadow.qrc"/>
+ </resources>
  <connections/>
 </ui>

@@ -18,3 +18,6 @@ SOURCES += main.cpp\
 HEADERS  += shadow.h
 
 FORMS    += shadow.ui
+
+RESOURCES += \
+    shadow.qrc
