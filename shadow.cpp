@@ -224,7 +224,8 @@ void Shadow::on_btnSubmit_clicked()
     QString strResult = QString::fromLocal8Bit(process->readAllStandardOutput());
     QString strError = QString::fromLocal8Bit(process->readAllStandardError());
     strResult.append(strError);
-    ui->coreOutput->setText(strResult);
+    //ui->coreOutput->setText(strResult);
+    ui->coreOutput->append(strResult);
 
     //QMessageBox megBox(this);
     //megBox.setText(strResult);

@@ -221,7 +221,7 @@
         <item>
          <widget class="QLabel" name="label_10">
           <property name="text">
-           <string>墙壁格数：</string>
+           <string>墙壁高度：</string>
           </property>
          </widget>
         </item>
@@ -232,6 +232,13 @@
           </property>
           <property name="value">
            <number>2</number>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_19">
+          <property name="text">
+           <string>格</string>
           </property>
          </widget>
         </item>

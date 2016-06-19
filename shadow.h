@@ -12,7 +12,7 @@
 #include <QJsonObject>
 
 #define LX "lx="
-#define LY "lx="
+#define LY "ly="
 #define WALL "wall="
 #define ATTEN "atten="
 #define FN "fn="
@@ -21,8 +21,8 @@
 #define SCALE "scale="
 #define ORIFILE "ori="
 #define ABOUT_TEXT "生成影子\nAuthor: garfeng\ncopyright 2016-2016"
-#define WEBSITE "http://xxx.xxx"
-#define GITHUB "http://github.com/garfeng/xxx"
+#define WEBSITE "http://garfeng.github.io/2016-06-19/Auto-Shadow/"
+#define GITHUB "http://github.com/garfeng/shadow"
 
 #define CONF "config.json"
 
