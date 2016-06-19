@@ -6,8 +6,6 @@
 
 生成效果并不是很好，因为程序无法从二维图片中提取xyz三个坐标，只能完全当二维来处理。
 
-所以，请千万不要太过依赖程序而忽视人类画师的重要性。
-
 ## 效果
 
 ![原图](https://raw.githubusercontent.com/garfeng/shadow/master/examples/originMap.png) ![光+影](https://raw.githubusercontent.com/garfeng/shadow/master/examples/shadowAndLight.png) ![影](https://raw.githubusercontent.com/garfeng/shadow/master/examples/onlyWithShadow.png) ![光](https://raw.githubusercontent.com/garfeng/shadow/master/examples/onlyWithLight.png)
