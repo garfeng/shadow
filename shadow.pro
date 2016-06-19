@@ -21,3 +21,9 @@ FORMS    += shadow.ui
 
 RESOURCES += \
     shadow.qrc
+
+
+RC_ICONS = images/shadow.ico
+
+RC_FILE += shadow.rc
+

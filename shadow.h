@@ -8,6 +8,8 @@
 #include <QFileDialog>
 #include <QMessageBox>
 #include <QDesktopServices>
+#include <QJsonDocument>
+#include <QJsonObject>
 
 #define LX "lx="
 #define LY "lx="
@@ -15,11 +17,14 @@
 #define ATTEN "atten="
 #define FN "fn="
 #define OUTPUT "out="
-#define PY "py="
+#define PY "pd="
 #define SCALE "scale="
+#define ORIFILE "ori="
 #define ABOUT_TEXT "生成影子\nAuthor: garfeng\ncopyright 2016-2016"
 #define WEBSITE "http://xxx.xxx"
 #define GITHUB "http://github.com/garfeng/xxx"
+
+#define CONF "config.json"
 
 namespace Ui {
 class Shadow;
@@ -51,6 +56,12 @@ private slots:
     void on_actionAbout_triggered();
 
     void on_actionAuthor_s_Blog_triggered();
+
+    void stupConf();
+    void saveConf();
+    QString GetJsonVal(QString key,QJsonObject jsonObj);
+
+    void on_btnOriFile_clicked();
 
 private:
     Ui::Shadow *ui;

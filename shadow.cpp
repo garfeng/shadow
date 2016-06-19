@@ -6,11 +6,94 @@ Shadow::Shadow(QWidget *parent) :
     ui(new Ui::Shadow)
 {
     ui->setupUi(this);
+    //ui->inputImg->setText("hhhh");
+    stupConf();
 }
 
 Shadow::~Shadow()
 {
     delete ui;
+}
+
+QString Shadow::GetJsonVal(QString key,QJsonObject jsonObj)
+{
+    if(jsonObj.contains(key))
+    {
+        QJsonValue value = jsonObj.take(key);
+        if(value.isDouble())
+        {
+            int valueInt = (int)(value.toDouble());
+            QString str = QString::number(valueInt);
+            return str;
+        } else if(value.isString()){
+            QString valueString = value.toString();
+            return valueString;
+        } else {
+            return "";
+        }
+    }
+    return "";
+}
+
+void Shadow::stupConf(){
+    QFile file(CONF);
+    if(!file.open(QIODevice::ReadOnly | QIODevice::Text))
+    {
+        QMessageBox::warning(this,"IO error!","Can not read config file");
+    }
+    QJsonParseError json_error;
+    QByteArray jsonByteArray = file.readAll();
+    file.close();
+    QJsonDocument jsonDoc = QJsonDocument::fromJson(jsonByteArray,&json_error);
+    QJsonObject jsonObj;
+    if(json_error.error == QJsonParseError::NoError){
+        if(jsonDoc.isObject()){
+            jsonObj = jsonDoc.object();
+        }
+    }
+    QString val;
+    val = GetJsonVal("scrollwidth",jsonObj);
+    if (val != ""){
+        ui->scrollWidth->setText(val);
+    }
+
+    val = GetJsonVal("root",jsonObj);
+    if(val!="")
+    {
+        ui->outputDir->setText(val);
+    }
+
+    val = GetJsonVal("scale",jsonObj);
+    if(val!="")
+    {
+        ui->scale->setValue(val.toInt());
+        //ui->scale->setText(val);
+    }
+
+    val = GetJsonVal("atten",jsonObj);
+    if(val!="")
+    {
+        ui->attenuator->setText(val);
+    }
+}
+
+void Shadow::saveConf(){
+    QJsonObject jsonObj;
+    jsonObj.insert("scrollwidth",ui->scrollWidth->text().toInt());
+    jsonObj.insert("root",ui->outputDir->text());
+    jsonObj.insert("scale",ui->scale->text().toInt());
+    jsonObj.insert("atten",ui->attenuator->text().toInt());
+    QJsonDocument JsonDoc;
+    JsonDoc.setObject(jsonObj);
+    QByteArray jsonByte = JsonDoc.toJson(QJsonDocument::Compact);
+    QFile file(CONF);
+    if(!file.open(QIODevice::ReadWrite |QIODevice::Truncate| QIODevice::Text))
+    {
+        QMessageBox::warning(this,"IO error!","Can not read config file");
+    }
+    //ui->coreOutput->setText(jsonByte);
+    file.write(jsonByte);
+    file.close();
 }
 
 void Shadow::on_btnOutputDir_clicked()
@@ -69,33 +152,32 @@ QString Shadow::strPlusScroll(QString str){
     return QString::number(tmpInt);
 }
 
+
+void Shadow::on_btnOriFile_clicked()
+{
+    QString strFileName;
+    strFileName = QFileDialog::getOpenFileName(this,tr("打开图片"),"","Pictures (*.png)");
+    if(strFileName.isEmpty()){
+        return;
+    }
+    ui->oriFile->setText(strFileName);
+}
+
+
+
 void Shadow::on_btnSubmit_clicked()
 {
-/*
-    ui.colorButton->setPalette(QPalette(Qt::green));
-    ui.colorButton->setAutoFillBackground(true);
-
-    QPalette qpalette = ui->btnSubmit->palette();
-    qpalette.setColor(QPalette::ButtonText,QColor(230,70,70,255));
-
-    ui->btnSubmit->setPalette(qpalette);
-    ui->btnSubmit->setAutoFillBackground(true);
-    ui->btnSubmit->setFlat(true);
-    */
-    //ui->btnSubmit->set
-    //ui->btnSubmit->setStyleSheet("background-color:#FF0000");
-
-
+    saveConf();
     QStringList args;
     QString argsStr;
     std::string stdStrargs;
     QString execFile;
     // = "./hello";
 #ifdef Q_OS_WIN32
-    execFile = "hello.exe";
+    execFile = "shadowCore.exe";
 #endif
 #ifdef Q_OS_LINUX
-    execFile = "./hello";
+    execFile = "./shadowCore";
 #endif
     QStringList b = ui->inputImg->toPlainText().split("\n");
     args.append(b);
@@ -123,6 +205,7 @@ void Shadow::on_btnSubmit_clicked()
     tmp.clear();tmp.append(FN);tmp.append(ui->outfilename->text());args<<tmp;
     tmp.clear();tmp.append(OUTPUT);tmp.append(ui->outputDir->text());args<<tmp;
     tmp.clear();tmp.append(PY);tmp.append(ui->padding->text());args<<tmp;
+    tmp.clear();tmp.append(ORIFILE);tmp.append(ui->oriFile->text());args<<tmp;
 
     int scale = ui->scale->text().toInt();
     tmp.clear();tmp.append(SCALE);tmp.append(QString::number(scale));args<<tmp;
@@ -132,8 +215,9 @@ void Shadow::on_btnSubmit_clicked()
     //argsStr = args.join(" ");
     //stdStrargs = argsStr.toStdString();
     //const char* charArgs = stdStrargs.c_str();
+
     QProcess* process = new QProcess();
-    //process->start(execFile);
+
     process->start(execFile,args);
     process->waitForStarted();
     process->waitForFinished();
@@ -173,3 +257,4 @@ void Shadow::on_actionAuthor_s_Blog_triggered()
 {
     QDesktopServices::openUrl(QUrl(GITHUB));
 }
+
