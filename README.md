@@ -10,10 +10,7 @@
 
 ## 效果
 
-[!原图]()
-[!]()
-[!]()
-[!]()
+![原图](https://raw.githubusercontent.com/garfeng/shadow/master/examples/originMap.png) ![光+影](https://raw.githubusercontent.com/garfeng/shadow/master/examples/shadowAndLight.png) ![影](https://raw.githubusercontent.com/garfeng/shadow/master/examples/onlyWithShadow.png) ![光](https://raw.githubusercontent.com/garfeng/shadow/master/examples/onlyWithLight.png)
 
 
 ## 可运行程序下载
